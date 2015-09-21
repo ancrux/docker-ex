@@ -1,8 +1,8 @@
 #!/bin/bash
 
 sudo docker run \
-  --rm \
-  --name=cadvisor \
+  -d \
+  --name=cadvisor-influxdb \
   --volume=/:/rootfs:ro \
   --volume=/var/run:/var/run:rw \
   --volume=/sys:/sys:ro \
