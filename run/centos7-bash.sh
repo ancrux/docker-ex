@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo docker run \
-  -d \
-  --name=centos7 \
+  --rm \
+  --name=centos7-bash \
   centos:7 \
-  top -b
+  bash -s
