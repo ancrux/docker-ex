@@ -8,5 +8,7 @@ docker run \
  -p 2004:2004 \
  -p 7002:7002 \
  -p 2222:22 \
- graphite
+ -ti \
+ graphite \
+ bash -s
 	

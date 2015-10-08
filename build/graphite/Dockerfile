@@ -8,14 +8,22 @@ LABEL version=1.0
 RUN \
  yum install -y openssh-clients openssh-server; \
  yum install -y epel-release; \
+ yum install -y supervisor; \
  yum install -y graphite-web python-carbon; \
- yum clean all; \
+ yum clean all;
+
+# port in use
+EXPOSE 22 80 2003 2003/udp 2004 7002
+
+RUN \
  echo "root:12#\$56" | chpasswd; \
  python /usr/lib/python2.6/site-packages/graphite/manage.py syncdb --noinput; \
  chown apache:apache /var/lib/graphite-web/graphite.db;
 
-# port in use
-EXPOSE 22 80 2003 2003/udp 2004 7002
+COPY etc/*.conf /etc/
+
+# volumes
+VOLUME ["/var/log", "/var/lib/carbon"]
 
 # command
 CMD service carbon-cache start && service sshd start; /usr/sbin/httpd -D FOREGROUND;
