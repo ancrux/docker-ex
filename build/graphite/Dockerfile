@@ -20,10 +20,11 @@ RUN \
  python /usr/lib/python2.6/site-packages/graphite/manage.py syncdb --noinput; \
  chown apache:apache /var/lib/graphite-web/graphite.db;
 
-COPY etc/*.conf /etc/
+COPY etc/supervisord.conf /etc/
+COPY etc/httpd/conf.d/graphite-web.conf /etc/httpd/conf.d/
 
 # volumes
 VOLUME ["/var/log", "/var/lib/carbon"]
 
 # command
-CMD service carbon-cache start && service sshd start; /usr/sbin/httpd -D FOREGROUND;
+CMD /usr/bin/supervisord
