@@ -25,6 +25,7 @@ RUN \
  python /usr/lib/python2.6/site-packages/graphite/manage.py syncdb --noinput; \
  chown apache:apache /var/lib/graphite-web/graphite.db;
 
+COPY usr/bin/setup.sh /usr/bin/
 COPY etc/supervisord.conf /etc/
 COPY etc/carbon/carbon.conf /etc/carbon/
 COPY etc/httpd/conf.d/graphite-web.conf /etc/httpd/conf.d/
