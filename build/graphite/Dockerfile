@@ -4,6 +4,11 @@ FROM centos:6.7
 MAINTAINER Angus <angus_liu@trend.com.tw>
 LABEL version=1.0
 
+# update existing packages
+#RUN \
+# yum update -y; \
+# yum clean all;
+
 # install packages
 RUN \
  yum install -y openssh-clients openssh-server; \
@@ -21,6 +26,7 @@ RUN \
  chown apache:apache /var/lib/graphite-web/graphite.db;
 
 COPY etc/supervisord.conf /etc/
+COPY etc/carbon/carbon.conf /etc/carbon/
 COPY etc/httpd/conf.d/graphite-web.conf /etc/httpd/conf.d/
 
 # volumes
