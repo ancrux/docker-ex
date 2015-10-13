@@ -17,18 +17,24 @@ RUN \
  yum install -y graphite-web python-carbon; \
  yum clean all;
 
-# port in use
-EXPOSE 22 80 2003 2003/udp 2004 7002
-
+# init sshd
 RUN \
  echo "root:12#\$56" | chpasswd; \
+ service sshd start && service sshd stop;
+
+# init graphite
+RUN \
  python /usr/lib/python2.6/site-packages/graphite/manage.py syncdb --noinput; \
  chown apache:apache /var/lib/graphite-web/graphite.db;
 
+# setup configuration
 COPY usr/bin/setup.sh /usr/bin/
 COPY etc/supervisord.conf /etc/
 COPY etc/carbon/carbon.conf /etc/carbon/
 COPY etc/httpd/conf.d/graphite-web.conf /etc/httpd/conf.d/
+
+# port in use
+EXPOSE 22 80 2003 2003/udp 2004 7002
 
 # volumes
 VOLUME ["/var/log", "/var/lib/carbon"]
