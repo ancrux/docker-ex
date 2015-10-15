@@ -1,0 +1,30 @@
+{
+  "interval": "20minute",
+  "logging": "debug",
+
+  "debug": true,
+  
+  "smtp": {
+    "host": "172.16.33.101",
+    "port": 25,
+    "from": "beacon@graphite.org",
+    "to": ["angus_liu@trend.com.tw"]
+  },
+
+  "alerts": [
+    {
+      "name": "Memory",
+      "query": "aliasByNode(collectd.*.memory.memory-free, 1)",
+      "interval": "10minute",
+      "format": "bytes",
+      "rules": ["warning: < 300MB", "critical: > 200MB"]
+    },
+    {
+      "name": "Site",
+      "source": "url",
+      "query": "http://google.com",
+      "interval": "20second",
+      "rules": ["critical: != 200"]
+    }
+  ]
+}
