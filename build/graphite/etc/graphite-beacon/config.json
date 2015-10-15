@@ -3,6 +3,9 @@
   "logging": "debug",
 
   "debug": true,
+
+  "public_graphite_url": "http://172.16.33.99",
+  "graphite_url": "http://localhost",
   
   "smtp": {
     "host": "172.16.33.101",
@@ -14,7 +17,7 @@
   "alerts": [
     {
       "name": "Memory",
-      "query": "aliasByNode(collectd.*.memory.memory-free, 1)",
+      "query": "aliasByNode(*.memory.memory-free, 1)",
       "interval": "10minute",
       "format": "bytes",
       "rules": ["warning: < 300MB", "critical: > 200MB"]
@@ -22,7 +25,7 @@
     {
       "name": "Site",
       "source": "url",
-      "query": "http://google.com",
+      "query": "http://www.angusliu.com",
       "interval": "20second",
       "rules": ["critical: != 200"]
     }
