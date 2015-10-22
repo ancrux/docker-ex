@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p /opt/carbon/
 docker run \
  --rm \
  --name=graphite \
