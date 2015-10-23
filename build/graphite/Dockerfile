@@ -33,11 +33,11 @@ RUN \
  mkdir -p /etc/graphite-beacon;
 
 # setup configuration
-COPY usr/bin/setup.sh /usr/bin/
-COPY etc/supervisord.conf /etc/
-COPY etc/carbon/carbon.conf /etc/carbon/
-COPY etc/httpd/conf.d/graphite-web.conf /etc/httpd/conf.d/
-COPY etc/graphite-beacon/config.json /etc/graphite-beacon/
+COPY files/usr/bin/docker-setup.sh /usr/bin/
+COPY files/etc/supervisord.conf /etc/
+COPY files/etc/carbon/carbon.conf /etc/carbon/
+COPY files/etc/httpd/conf.d/graphite-web.conf /etc/httpd/conf.d/
+COPY files/etc/graphite-beacon/config.json /etc/graphite-beacon/
 
 # port in use
 EXPOSE 22 80 2003 2003/udp 2004 7002
