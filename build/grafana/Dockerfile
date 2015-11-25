@@ -12,10 +12,15 @@ RUN \
  apt-get install -y openssh-server; \
  apt-get clean; \
  echo "root:12#\$56" | chpasswd;
- 
+
+COPY files/etc/ssh/sshd_config /etc/ssh/ 
 COPY files/usr/bin/docker-entry.sh /usr/bin/
  
 # port in use
 EXPOSE 22 3000
 
-ENTRYPOINT /usr/bin/docker-entry.sh
+# use default ENTRYPOINT
+ENTRYPOINT []
+
+# startup command
+CMD "/usr/bin/docker-entry.sh"
