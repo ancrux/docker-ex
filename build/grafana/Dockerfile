@@ -10,6 +10,7 @@ LABEL version=1.0
 
 RUN \
  apt-get install -y openssh-server; \
+ apt-get install -y sqlite3; \
  apt-get clean; \
  echo "root:12#\$56" | chpasswd;
 
