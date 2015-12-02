@@ -16,6 +16,7 @@ RUN \
 
 COPY files/etc/ssh/sshd_config /etc/ssh/ 
 COPY files/usr/bin/docker-entry.sh /usr/bin/
+COPY files/var/lib/grafana/grafana.db /var/lib/grafana/
  
 # port in use
 EXPOSE 22 3000
